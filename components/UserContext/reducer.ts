@@ -17,7 +17,6 @@ const reducer = (state: IUser, action: IUserAction): IUser => {
       };
     case 'SET_USER':
       return {
-        ...state,
         ...action.user,
       };
     default:
