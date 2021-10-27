@@ -16,26 +16,38 @@ function random(start: number, end: number) {
 }
 
 export default () => {
+  const [isError, setIsError] = React.useState(false);
+  const [difficulty, setDifficulty] = React.useState('');
   const [choosenNum, setChoosenNum] = React.useState('1');
   const [result, setResult] = React.useState(<Text />);
   const {dispatch} = React.useContext(UserContext);
-  let difficulty: string;
 
-  const decideWinner = () => {
+  const decide = (onlyLevel?: boolean) => {
+    let range: number[];
     switch (difficulty) {
       case 'Easy':
-        return random(1, 10);
+        range = [1, 10];
+        break;
       case 'Normal':
-        return random(1, 25);
+        range = [1, 25];
+        break;
       case 'Hard':
-        return random(1, 50);
+        range = [1, 50];
+        break;
       default:
         throw new Error();
     }
+    return onlyLevel ? range : random(range[0], range[1]);
   };
-
+  function handleInput(input: string) {
+    setChoosenNum(input);
+    setIsError(
+      //@ts-ignore
+      isNaN(+input) || +input < decide(true)[0] || +input > decide(true)[1],
+    );
+  }
   function handleSubmit() {
-    const winner = decideWinner();
+    const winner = decide();
     const win = winner === +choosenNum;
     const element = (
       <Center marginY="8">
@@ -58,7 +70,7 @@ export default () => {
       record: {
         selectedNumber: +choosenNum,
         date: dayjs().format('DD/MM/YYYY').toString(),
-        prizeNumber: winner,
+        prizeNumber: +winner,
         win,
       },
     });
@@ -76,41 +88,47 @@ export default () => {
           colorScheme="green"
           opacity={difficulty && difficulty !== 'Easy' ? 0.5 : 1}
           w="32%"
-          onPress={() => (difficulty = 'Easy')}>
+          onPress={() => setDifficulty('Easy')}>
           Easy
         </Button>
         <Button
           colorScheme="amber"
           opacity={difficulty && difficulty !== 'Normal' ? 0.5 : 1}
           w="32%"
-          onPress={() => (difficulty = 'Normal')}>
+          onPress={() => setDifficulty('Normal')}>
           Normal
         </Button>
         <Button
           colorScheme="red"
           opacity={difficulty && difficulty !== 'Hard' ? 0.5 : 1}
           w="32%"
-          onPress={() => (difficulty = 'Hard')}>
+          onPress={() => setDifficulty('Hard')}>
           Hard
         </Button>
       </HStack>
       {difficulty && (
-        <FormControl>
+        <FormControl isInvalid={isError}>
           <FormControl.Label
             _text={{
               color: 'coolGray.800',
               fontSize: 'xs',
               fontWeight: 500,
             }}>
-            Chosen Number
+            {/* @ts-ignore **/}
+            Choose Number (Range: {decide(true)[0]} - {decide(true)[1]})
           </FormControl.Label>
           <Input
             value={choosenNum}
-            onChangeText={val => setChoosenNum(val)}
+            onChangeText={val => handleInput(val)}
             InputRightElement={
-              <Button onPress={() => handleSubmit()}>Submit</Button>
+              <Button isDisabled={isError} onPress={() => handleSubmit()}>
+                Submit
+              </Button>
             }
           />
+          <FormControl.ErrorMessage>
+            Please Enter Correct Number Range.
+          </FormControl.ErrorMessage>
         </FormControl>
       )}
       {result}
