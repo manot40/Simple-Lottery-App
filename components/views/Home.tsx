@@ -25,29 +25,50 @@ export default () => {
         maxWidth="full">
         <Box backgroundColor="green.600" p="4" rounded="lg" w="49%">
           <HStack justifyContent="space-between">
-            <Text fontSize="4xl">{user.totalWin}</Text>
-            <Text fontSize="md" fontWeight="bold">
+            <Text fontSize="4xl" color="warmGray.100" fontWeight="bold">
+              {user.totalWin}
+            </Text>
+            <Text fontSize="md" color="warmGray.100" fontWeight="bold">
               Win
             </Text>
           </HStack>
         </Box>
         <Box backgroundColor="red.500" p="4" rounded="lg" w="49%">
           <HStack justifyContent="space-between">
-            <Text fontSize="4xl">{user.totalLose}</Text>
-            <Text fontSize="md" fontWeight="bold">
+            <Text fontSize="4xl" color="warmGray.100" fontWeight="bold">
+              {user.totalLose}
+            </Text>
+            <Text fontSize="md" color="warmGray.100" fontWeight="bold">
               Lose
             </Text>
           </HStack>
         </Box>
       </HStack>
-      <Box backgroundColor="darkBlue.400" p="4" rounded="lg" w="full">
-        <HStack justifyContent="space-between">
-          <Text fontSize="4xl">{user.records.length}</Text>
-          <Text fontSize="md" fontWeight="bold">
-            Total Attempt
-          </Text>
-        </HStack>
-      </Box>
+      <HStack justifyContent="space-between" space="2" maxWidth="full">
+        <Box backgroundColor="darkBlue.400" p="4" rounded="lg" w="59%">
+          <HStack justifyContent="space-between">
+            <Text fontSize="4xl" color="warmGray.100" fontWeight="bold">
+              {user.records.length}
+            </Text>
+            <Text fontSize="md" color="warmGray.100" fontWeight="bold">
+              Total Attempt
+            </Text>
+          </HStack>
+        </Box>
+        <Box backgroundColor="muted.900" p="4" rounded="lg" w="39%">
+          <HStack justifyContent="space-between">
+            <Text fontSize="4xl" color="warmGray.100" fontWeight="bold">
+              {user.totalWin === 0
+                ? '0'
+                : ((user.totalWin / user.records.length) * 100).toFixed(1)}
+              %
+            </Text>
+            <Text fontSize="md" color="warmGray.100" fontWeight="bold">
+              WR
+            </Text>
+          </HStack>
+        </Box>
+      </HStack>
       <Text marginY="4" fontSize="3xl" fontWeight="bold">
         History
       </Text>
@@ -58,11 +79,11 @@ export default () => {
       ) : (
         <FlatList
           maxHeight="45%"
-          data={user.records}
+          data={user.records.slice(0, 20)}
           renderItem={({item}) => (
             <Box
               borderBottomWidth="1"
-              borderColor="coolGray.200"
+              borderColor="coolGray.100"
               pl="4"
               pr="5"
               py="2">
