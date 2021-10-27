@@ -16,10 +16,11 @@ function random(start: number, end: number) {
 }
 
 export default () => {
-  const [difficulty, setDifficulty] = React.useState('');
   const [choosenNum, setChoosenNum] = React.useState('1');
   const [result, setResult] = React.useState(<Text />);
   const {dispatch} = React.useContext(UserContext);
+  let difficulty: string;
+
   const decideWinner = () => {
     switch (difficulty) {
       case 'Easy':
@@ -52,7 +53,6 @@ export default () => {
         </Text>
       </Center>
     );
-    setResult(element);
     dispatch({
       type: win ? 'WIN' : 'LOSE',
       record: {
@@ -62,6 +62,7 @@ export default () => {
         win,
       },
     });
+    setResult(element);
   }
 
   return (
@@ -75,21 +76,21 @@ export default () => {
           colorScheme="green"
           opacity={difficulty && difficulty !== 'Easy' ? 0.5 : 1}
           w="32%"
-          onPress={() => setDifficulty('Easy')}>
+          onPress={() => (difficulty = 'Easy')}>
           Easy
         </Button>
         <Button
           colorScheme="amber"
           opacity={difficulty && difficulty !== 'Normal' ? 0.5 : 1}
           w="32%"
-          onPress={() => setDifficulty('Normal')}>
+          onPress={() => (difficulty = 'Normal')}>
           Normal
         </Button>
         <Button
           colorScheme="red"
           opacity={difficulty && difficulty !== 'Hard' ? 0.5 : 1}
           w="32%"
-          onPress={() => setDifficulty('Hard')}>
+          onPress={() => difficulty = 'Hard')}>
           Hard
         </Button>
       </HStack>
