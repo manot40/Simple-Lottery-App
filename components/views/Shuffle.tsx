@@ -90,7 +90,7 @@ export default () => {
           colorScheme="red"
           opacity={difficulty && difficulty !== 'Hard' ? 0.5 : 1}
           w="32%"
-          onPress={() => difficulty = 'Hard')}>
+          onPress={() => (difficulty = 'Hard')}>
           Hard
         </Button>
       </HStack>
