@@ -1,7 +1,7 @@
 const reducer = (state: IUser, action: IUserAction): IUser => {
   const records = !action.record
     ? [...state.records]
-    : [...state.records, action.record];
+    : [action.record, ...state.records];
   switch (action.type) {
     case 'WIN':
       return {
