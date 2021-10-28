@@ -1,13 +1,15 @@
 import React from 'react';
 import {ViewContext} from './Main';
 import Ico from 'react-native-vector-icons/MaterialIcons';
-import {Box, Icon, Text, HStack, Center, Pressable} from 'native-base';
+import {Box, Icon, Text, HStack, View, Pressable} from 'native-base';
 
-export default () => {
+export default ({children}: any) => {
   const {view, setView} = React.useContext(ViewContext);
   return (
     <Box flex={1} bg="white" safeAreaTop>
-      <Center flex={1} />
+      <View flex={1} backgroundColor="white">
+        {children}
+      </View>
       <HStack bg="darkBlue.600" alignItems="center" safeAreaBottom shadow={6}>
         <Pressable
           cursor="pointer"
