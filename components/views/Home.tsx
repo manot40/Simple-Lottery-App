@@ -15,7 +15,7 @@ export default () => {
   const {user} = React.useContext(UserContext);
   return (
     <Flex p="4" backgroundColor="white">
-      <Text marginY="4" fontSize="3xl" fontWeight="bold">
+      <Text marginY="4" fontSize="3xl" bold>
         Statistic
       </Text>
       <HStack
@@ -25,20 +25,20 @@ export default () => {
         maxWidth="full">
         <Box backgroundColor="green.600" p="4" rounded="lg" w="49%">
           <HStack justifyContent="space-between">
-            <Text fontSize="4xl" color="warmGray.100" fontWeight="bold">
+            <Text fontSize="4xl" color="warmGray.100" bold>
               {user.totalWin}
             </Text>
-            <Text fontSize="md" color="warmGray.100" fontWeight="bold">
+            <Text fontSize="md" color="warmGray.100" bold>
               Win
             </Text>
           </HStack>
         </Box>
         <Box backgroundColor="red.500" p="4" rounded="lg" w="49%">
           <HStack justifyContent="space-between">
-            <Text fontSize="4xl" color="warmGray.100" fontWeight="bold">
+            <Text fontSize="4xl" color="warmGray.100" bold>
               {user.totalLose}
             </Text>
-            <Text fontSize="md" color="warmGray.100" fontWeight="bold">
+            <Text fontSize="md" color="warmGray.100" bold>
               Lose
             </Text>
           </HStack>
@@ -47,29 +47,29 @@ export default () => {
       <HStack justifyContent="space-between" space="2" maxWidth="full">
         <Box backgroundColor="darkBlue.400" p="4" rounded="lg" w="59%">
           <HStack justifyContent="space-between">
-            <Text fontSize="4xl" color="warmGray.100" fontWeight="bold">
+            <Text fontSize="4xl" color="warmGray.100" bold>
               {user.records.length}
             </Text>
-            <Text fontSize="md" color="warmGray.100" fontWeight="bold">
+            <Text fontSize="md" color="warmGray.100" bold>
               Total Attempt
             </Text>
           </HStack>
         </Box>
         <Box backgroundColor="muted.900" p="4" rounded="lg" w="39%">
           <HStack justifyContent="space-between">
-            <Text fontSize="4xl" color="warmGray.100" fontWeight="bold">
+            <Text fontSize="4xl" color="warmGray.100" bold>
               {user.totalWin === 0
                 ? '0'
                 : ((user.totalWin / user.records.length) * 100).toFixed(1)}
               %
             </Text>
-            <Text fontSize="md" color="warmGray.100" fontWeight="bold">
+            <Text fontSize="md" color="warmGray.100" bold>
               WR
             </Text>
           </HStack>
         </Box>
       </HStack>
-      <Text marginY="4" fontSize="3xl" fontWeight="bold">
+      <Text marginY="4" fontSize="3xl" bold>
         History
       </Text>
       {!user.records.length ? (
@@ -89,12 +89,7 @@ export default () => {
               py="2">
               <HStack space={3} justifyContent="space-between">
                 <VStack>
-                  <Text
-                    _dark={{
-                      color: 'warmGray.50',
-                    }}
-                    color={item.win ? 'green.600' : 'red.500'}
-                    bold>
+                  <Text color={item.win ? 'green.600' : 'red.500'} bold>
                     {item.win ? 'Win' : 'Lose'}
                   </Text>
                   <Text color="coolGray.600">
@@ -104,9 +99,6 @@ export default () => {
                 <Spacer />
                 <Text
                   fontSize="xs"
-                  _dark={{
-                    color: 'warmGray.50',
-                  }}
                   color="coolGray.800"
                   alignSelf="flex-start">
                   {item.date}
