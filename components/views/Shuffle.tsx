@@ -6,6 +6,7 @@ import {
   FormControl,
   Input,
   Center,
+  Box,
 } from 'native-base';
 import React from 'react';
 import {UserContext} from '../UserContext';
@@ -77,8 +78,8 @@ export default () => {
   }
 
   return (
-    <>
-      <Text marginY="4" fontSize="3xl" fontWeight="bold">
+    <Box>
+      <Text marginY="4" fontSize="3xl" bold>
         Play
       </Text>
       <Text fontSize="lg">Choose difficulty</Text>
@@ -118,19 +119,29 @@ export default () => {
           </FormControl.Label>
           <Input
             value={choosenNum}
+            type="numeric"
             onChangeText={val => handleInput(val)}
+            onEndEditing={() => !isError && handleSubmit()}
+            _focus={{
+              borderColor: isError ? 'red.500' : 'muted.900',
+            }}
             InputRightElement={
-              <Button isDisabled={isError} onPress={() => handleSubmit()}>
+              <Button
+                mr="1"
+                bg="muted.900"
+                _text={{color: 'white'}}
+                isDisabled={isError}
+                onPress={() => handleSubmit()}>
                 Submit
               </Button>
             }
           />
           <FormControl.ErrorMessage>
-            Please Enter Correct Number Range.
+            Please enter correct number in range.
           </FormControl.ErrorMessage>
         </FormControl>
       )}
       {result}
-    </>
+    </Box>
   );
 };

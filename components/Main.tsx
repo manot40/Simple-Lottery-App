@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React from 'react';
 import {View} from 'native-base';
 import {Login, Home, Shuffle, Leaderboard, Account, Navigation} from './';

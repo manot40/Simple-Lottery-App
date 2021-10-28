@@ -1,4 +1,4 @@
-import {Avatar, Button, Center, Text} from 'native-base';
+import {Avatar, Button, Center, Text, View} from 'native-base';
 import {ViewContext} from '../Main';
 import {UserContext} from '../UserContext';
 import React from 'react';
@@ -7,7 +7,7 @@ export default () => {
   const {setView} = React.useContext(ViewContext);
   const {user} = React.useContext(UserContext);
   return (
-    <>
+    <View>
       <Center>
         <Avatar
           size="128px"
@@ -33,10 +33,10 @@ export default () => {
           onPress={() => setView('Login')}>
           Logout
         </Button>
-        <Button w="50%" colorScheme="info">
+        <Button w="50%" bg="muted.900" _text={{color: 'white'}}>
           Edit User
         </Button>
       </Center>
-    </>
+    </View>
   );
 };

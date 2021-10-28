@@ -7,7 +7,9 @@ import {
   VStack,
   Text,
   Spacer,
+  View,
 } from 'native-base';
+import {SafeAreaView} from 'react-native';
 
 const data = [
   {
@@ -55,59 +57,61 @@ const data = [
 
 export default () => {
   return (
-    <>
+    <View>
       <Text marginY="4" fontSize="3xl" fontWeight="bold">
         Leaderboard
       </Text>
-      <FlatList
-        data={data}
-        renderItem={({item, index}) => (
-          <Flex
-            borderBottomWidth="1"
-            _dark={{
-              borderColor: 'gray.600',
-            }}
-            borderColor="coolGray.200"
-            pl="4"
-            pr="5"
-            py="2">
-            <HStack space={3} justifyContent="space-between">
-              <Avatar
-                size="48px"
-                source={{
-                  uri: item.avatarUrl,
-                }}
-              />
-              <VStack>
-                <Text
-                  _dark={{
-                    color: 'warmGray.50',
+      <SafeAreaView>
+        <FlatList
+          data={data}
+          renderItem={({item, index}) => (
+            <Flex
+              borderBottomWidth="1"
+              _dark={{
+                borderColor: 'gray.600',
+              }}
+              borderColor="coolGray.200"
+              pl="4"
+              pr="5"
+              py="2">
+              <HStack space={3} justifyContent="space-between">
+                <Avatar
+                  size="48px"
+                  source={{
+                    uri: item.avatarUrl,
                   }}
-                  color="coolGray.800"
-                  bold>
-                  {item.fullName}
-                </Text>
+                />
+                <VStack>
+                  <Text
+                    _dark={{
+                      color: 'warmGray.50',
+                    }}
+                    color="coolGray.800"
+                    bold>
+                    {item.fullName}
+                  </Text>
+                  <Text
+                    color="coolGray.600"
+                    _dark={{
+                      color: 'warmGray.200',
+                    }}>
+                    {item.recentText}
+                  </Text>
+                </VStack>
+                <Spacer />
                 <Text
-                  color="coolGray.600"
-                  _dark={{
-                    color: 'warmGray.200',
-                  }}>
-                  {item.recentText}
+                  fontSize="xs"
+                  color="coolGray.800"
+                  fontWeight="bold"
+                  alignSelf="flex-start">
+                  #{(index += 1)}
                 </Text>
-              </VStack>
-              <Spacer />
-              <Text
-                fontSize="xs"
-                color="coolGray.800"
-                fontWeight="bold"
-                alignSelf="flex-start">
-                #{(index += 1)}
-              </Text>
-            </HStack>
-          </Flex>
-        )}
-        keyExtractor={item => item.id}
-      />
-    </>
+              </HStack>
+            </Flex>
+          )}
+          keyExtractor={item => item.id}
+        />
+      </SafeAreaView>
+    </View>
   );
 };

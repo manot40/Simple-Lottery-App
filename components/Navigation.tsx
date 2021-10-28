@@ -1,17 +1,17 @@
 import React from 'react';
 import {ViewContext} from './Main';
 import Ico from 'react-native-vector-icons/MaterialIcons';
-import {Box, Icon, Text, HStack, ScrollView, Pressable} from 'native-base';
+import {Box, Icon, Text, HStack, View, Center, Pressable} from 'native-base';
 
 export default ({children}: any) => {
   const {view, setView} = React.useContext(ViewContext);
   return (
     <Box flex={1} bg="white" safeAreaTop>
-      <ScrollView flex={1} p="4" backgroundColor="white">
+      <View flex={1} p="4" backgroundColor="white">
         {children}
-      </ScrollView>
+      </View>
       {view && view !== 'Login' && (
-        <HStack bg="darkBlue.600" alignItems="center" safeAreaBottom shadow={6}>
+        <HStack bg="muted.900" alignItems="center" safeAreaBottom shadow={6}>
           <Pressable
             cursor="pointer"
             opacity={view === 'Home' ? 1 : 0.5}
@@ -32,7 +32,12 @@ export default ({children}: any) => {
             flex={1}
             onPress={() => setView('Shuffle')}>
             <Center>
-              <Icon mb="1" as={<Ico name="shuffle" />} color="white" size="md" />
+              <Icon
+                mb="1"
+                as={<Ico name="shuffle" />}
+                color="white"
+                size="md"
+              />
               <Text color="white" fontSize="12">
                 Shuffle
               </Text>

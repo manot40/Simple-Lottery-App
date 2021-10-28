@@ -1,19 +1,11 @@
 import React from 'react';
 import {UserContext} from '../UserContext';
-import {
-  Box,
-  Text,
-  HStack,
-  VStack,
-  FlatList,
-  Spacer,
-  Center,
-} from 'native-base';
+import {Box, Text, HStack, VStack, FlatList, Spacer, Center} from 'native-base';
 
 export default () => {
   const {user} = React.useContext(UserContext);
   return (
-    <>
+    <Box>
       <Text marginY="4" fontSize="3xl" bold>
         Statistic
       </Text>
@@ -44,7 +36,7 @@ export default () => {
         </Box>
       </HStack>
       <HStack justifyContent="space-between" space="2" maxWidth="full">
-        <Box backgroundColor="darkBlue.400" p="4" rounded="lg" w="49%">
+        <Box backgroundColor="muted.900" p="4" rounded="lg" w="49%">
           <HStack justifyContent="space-between">
             <Text fontSize="4xl" color="warmGray.100" bold>
               {user.records.length}
@@ -54,7 +46,7 @@ export default () => {
             </Text>
           </HStack>
         </Box>
-        <Box backgroundColor="muted.900" p="4" rounded="lg" w="49%">
+        <Box backgroundColor="muted.600" p="4" rounded="lg" w="49%">
           <HStack justifyContent="space-between">
             <Text fontSize="4xl" color="warmGray.100" bold>
               {user.totalWin === 0
@@ -77,7 +69,7 @@ export default () => {
         </Center>
       ) : (
         <FlatList
-          maxHeight="45%"
+          maxHeight="50%"
           data={user.records.slice(0, 20)}
           renderItem={({item}) => (
             <Box
@@ -96,10 +88,7 @@ export default () => {
                   </Text>
                 </VStack>
                 <Spacer />
-                <Text
-                  fontSize="xs"
-                  color="coolGray.800"
-                  alignSelf="flex-start">
+                <Text fontSize="xs" color="coolGray.800" alignSelf="flex-start">
                   {item.date}
                 </Text>
               </HStack>
@@ -110,6 +99,6 @@ export default () => {
           }
         />
       )}
-    </>
+    </Box>
   );
 };
