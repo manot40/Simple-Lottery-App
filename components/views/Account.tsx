@@ -33,7 +33,11 @@ export default () => {
           onPress={() => setView('Login')}>
           Logout
         </Button>
-        <Button w="50%" bg="muted.900" _text={{color: 'white'}}>
+        <Button
+          w="50%"
+          bg="muted.900"
+          _pressed={{bg: 'muted.700'}}
+          _text={{color: 'white'}}>
           Edit User
         </Button>
       </Center>

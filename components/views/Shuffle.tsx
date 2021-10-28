@@ -129,7 +129,7 @@ export default () => {
               <Button
                 mr="1"
                 bg="muted.900"
-                _focus={{bg: 'muted.600'}}
+                _pressed={{bg: 'muted.700'}}
                 _text={{color: 'white'}}
                 isDisabled={isError}
                 onPress={() => handleSubmit()}>

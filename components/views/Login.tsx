@@ -85,7 +85,7 @@ export default () => {
         <Button
           mt="2"
           bg="muted.900"
-          _focus={{bg: 'muted.600'}}
+          _pressed={{bg: 'muted.700'}}
           _text={{color: 'white'}}
           onPress={() => {
             handleLogin();
