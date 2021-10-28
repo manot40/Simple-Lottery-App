@@ -1,6 +1,6 @@
 import React from 'react';
 import {View} from 'native-base';
-import {Login, Home, Shuffle, BottomNav, Leaderboard, Account} from './';
+import {Login, Home, Shuffle, Leaderboard, Account, Navigation} from './';
 import UserContextProvider from './UserContext';
 
 export const ViewContext = React.createContext({
@@ -29,8 +29,11 @@ export default () => {
 
   return (
     <ViewContext.Provider value={{view, setView}}>
-      <UserContextProvider>{currentView()}</UserContextProvider>
-      {view !== 'Login' && <BottomNav />}
+      <UserContextProvider>
+        <Navigation>
+          {currentView()}
+        </Navigation>
+      </UserContextProvider>
     </ViewContext.Provider>
   );
 };
