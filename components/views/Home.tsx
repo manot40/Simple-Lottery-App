@@ -45,17 +45,17 @@ export default () => {
         </Box>
       </HStack>
       <HStack justifyContent="space-between" space="2" maxWidth="full">
-        <Box backgroundColor="darkBlue.400" p="4" rounded="lg" w="59%">
+        <Box backgroundColor="darkBlue.400" p="4" rounded="lg" w="49%">
           <HStack justifyContent="space-between">
             <Text fontSize="4xl" color="warmGray.100" bold>
               {user.records.length}
             </Text>
             <Text fontSize="md" color="warmGray.100" bold>
-              Total Attempt
+              Attempt
             </Text>
           </HStack>
         </Box>
-        <Box backgroundColor="muted.900" p="4" rounded="lg" w="39%">
+        <Box backgroundColor="muted.900" p="4" rounded="lg" w="49%">
           <HStack justifyContent="space-between">
             <Text fontSize="4xl" color="warmGray.100" bold>
               {user.totalWin === 0
