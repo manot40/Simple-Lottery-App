@@ -10,7 +10,6 @@ import {
   Input,
   Button,
   useToast,
-  View,
 } from 'native-base';
 
 const defaultLogin = {
@@ -43,7 +42,7 @@ export default () => {
   }
 
   return (
-    <View flex={1} backgroundColor="white">
+    <>
       <Box safeArea flex={1} p="2" py="8" w="90%" mx="auto">
         <Heading size="lg" fontWeight="600" color="coolGray.800">
           Selamat Datang
@@ -95,6 +94,6 @@ export default () => {
           </Button>
         </VStack>
       </Box>
-    </View>
+    </>
   );
 };

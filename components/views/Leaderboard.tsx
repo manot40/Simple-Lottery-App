@@ -55,7 +55,7 @@ const data = [
 
 export default () => {
   return (
-    <Flex p="4" backgroundColor="white">
+    <>
       <Text marginY="4" fontSize="3xl" fontWeight="bold">
         Leaderboard
       </Text>
@@ -108,6 +108,6 @@ export default () => {
         )}
         keyExtractor={item => item.id}
       />
-    </Flex>
+    </>
   );
 };

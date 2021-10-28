@@ -1,6 +1,5 @@
 import dayjs from 'dayjs';
 import {
-  Flex,
   Text,
   Button,
   HStack,
@@ -78,7 +77,7 @@ export default () => {
   }
 
   return (
-    <Flex p="4" backgroundColor="white">
+    <>
       <Text marginY="4" fontSize="3xl" fontWeight="bold">
         Play
       </Text>
@@ -132,6 +131,6 @@ export default () => {
         </FormControl>
       )}
       {result}
-    </Flex>
+    </>
   );
 };

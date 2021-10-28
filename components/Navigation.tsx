@@ -1,13 +1,13 @@
 import React from 'react';
 import {ViewContext} from './Main';
-import Ico from 'react-native-vector-icons/MaterialIcons';
+import icon from 'react-native-vector-icons/MaterialIcons';
 import {Box, Icon, Text, HStack, ScrollView, Pressable} from 'native-base';
 
 export default ({children}: any) => {
   const {view, setView} = React.useContext(ViewContext);
   return (
     <Box flex={1} bg="white" safeAreaTop>
-      <ScrollView flex={1} backgroundColor="white">
+      <ScrollView flex={1} p="4" backgroundColor="white">
         {children}
       </ScrollView>
       <HStack bg="darkBlue.600" alignItems="center" safeAreaBottom shadow={6}>
@@ -18,7 +18,7 @@ export default ({children}: any) => {
           flex={1}
           onPress={() => setView('Home')}>
           <Center>
-            <Icon mb="1" as={<Ico name="home" />} color="white" size="md" />
+            <Icon mb="1" as={<icon name="home" />} color="white" size="md" />
             <Text color="white" fontSize="12">
               Home
             </Text>
@@ -31,7 +31,7 @@ export default ({children}: any) => {
           flex={1}
           onPress={() => setView('Shuffle')}>
           <Center>
-            <Icon mb="1" as={<Ico name="shuffle" />} color="white" size="md" />
+            <Icon mb="1" as={<icon name="shuffle" />} color="white" size="md" />
             <Text color="white" fontSize="12">
               Shuffle
             </Text>
@@ -46,7 +46,7 @@ export default ({children}: any) => {
           <Center>
             <Icon
               mb="1"
-              as={<Ico name="trending-up" />}
+              as={<icon name="trending-up" />}
               color="white"
               size="md"
             />
@@ -64,7 +64,7 @@ export default ({children}: any) => {
           <Center>
             <Icon
               mb="1"
-              as={<Ico name="account-circle" />}
+              as={<icon name="account-circle" />}
               color="white"
               size="md"
             />

@@ -5,7 +5,6 @@ import {
   Text,
   HStack,
   VStack,
-  Flex,
   FlatList,
   Spacer,
   Center,
@@ -14,7 +13,7 @@ import {
 export default () => {
   const {user} = React.useContext(UserContext);
   return (
-    <Flex p="4" backgroundColor="white">
+    <>
       <Text marginY="4" fontSize="3xl" bold>
         Statistic
       </Text>
@@ -111,6 +110,6 @@ export default () => {
           }
         />
       )}
-    </Flex>
+    </>
   );
 };

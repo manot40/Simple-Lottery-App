@@ -1,4 +1,4 @@
-import {Avatar, Button, Center, Flex, Text} from 'native-base';
+import {Avatar, Button, Center, Text} from 'native-base';
 import {ViewContext} from '../Main';
 import {UserContext} from '../UserContext';
 import React from 'react';
@@ -7,7 +7,7 @@ export default () => {
   const {setView} = React.useContext(ViewContext);
   const {user} = React.useContext(UserContext);
   return (
-    <Flex p="4" backgroundColor="white">
+    <>
       <Center>
         <Avatar
           size="128px"
@@ -37,6 +37,6 @@ export default () => {
           Edit User
         </Button>
       </Center>
-    </Flex>
+    </>
   );
 };
