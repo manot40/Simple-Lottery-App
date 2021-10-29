@@ -1,7 +1,7 @@
+/* eslint-disable prettier/prettier */
 import React from 'react';
 import {ViewContext} from '../Main';
 import {UserContext} from '../UserContext';
-import {defaultUser} from '../UserContext';
 import {
   Box,
   Heading,
@@ -12,9 +12,16 @@ import {
   useToast,
 } from 'native-base';
 
-const defaultLogin = {
+const login = {
   uname: 'user',
   psswd: 'user123',
+};
+const user: IUser = {
+  username: 'user',
+  fullname: 'John Doe',
+  totalWin: 0,
+  totalLose: 0,
+  records: [],
 };
 
 export default () => {
@@ -25,17 +32,17 @@ export default () => {
   const toast = useToast();
 
   function handleLogin() {
-    if (uname === defaultLogin.uname && psswd === defaultLogin.psswd) {
+    if (uname === login.uname && psswd === login.psswd) {
       setView('Home');
-      dispatch({type: 'SET_USER', user: defaultUser});
+      dispatch({type: 'SET_USER', user});
     } else {
       const id = 'test-toast';
       if (!toast.isActive(id)) {
         toast.show({
           id,
           status: 'error',
-          title: 'Login Gagal',
-          description: 'Username atau Password salah. Harap periksa kembali',
+          title: 'Login Failed',
+          description: 'Username or Password Invalid. Please enter correct login info',
         });
       }
     }
@@ -43,11 +50,11 @@ export default () => {
 
   return (
     <Box safeArea flex={1} p="2" py="8" w="90%" mx="auto">
-      <Heading size="lg" fontWeight="600" color="coolGray.800">
-        Selamat Datang
+      <Heading size="lg" fontWeight="600" color="muted.900">
+        Welcome
       </Heading>
-      <Heading mt="1" mb="4" color="coolGray.600" fontWeight="medium" size="xs">
-        Masuk ke akun anda untuk melanjutkan
+      <Heading mt="1" mb="4" color="muted.400" fontWeight="medium" size="xs">
+        Login to your account to proceed
       </Heading>
 
       <VStack space={3} mt="5">

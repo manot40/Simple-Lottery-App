@@ -3,6 +3,7 @@ import Main from './components/Main';
 import {BackHandler} from 'react-native';
 import {NativeBaseProvider} from 'native-base';
 import useDoublePress from './hooks/useDoublePress';
+import UserContextProvider from './components/UserContext';
 
 export default function () {
   useDoublePress(() => {
@@ -10,7 +11,9 @@ export default function () {
   });
   return (
     <NativeBaseProvider>
-      <Main />
+      <UserContextProvider>
+        <Main />
+      </UserContextProvider>
     </NativeBaseProvider>
   );
 }

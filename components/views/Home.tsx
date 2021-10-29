@@ -7,7 +7,7 @@ export default () => {
   return (
     <Box>
       <Text marginY="4" fontSize="3xl" bold>
-        Statistic
+        Overview
       </Text>
       <HStack
         justifyContent="space-between"
@@ -46,16 +46,16 @@ export default () => {
             </Text>
           </HStack>
         </Box>
-        <Box backgroundColor="muted.600" p="4" rounded="lg" w="49%">
+        <Box backgroundColor="trueGray.300" p="4" rounded="lg" w="49%">
           <HStack justifyContent="space-between">
-            <Text fontSize="4xl" color="warmGray.100" bold>
+            <Text fontSize="4xl" color="muted.900" bold>
               {user.totalWin === 0
                 ? '0'
                 : ((user.totalWin / user.records.length) * 100).toFixed(1)}
               %
             </Text>
-            <Text fontSize="md" color="warmGray.100" bold>
-              WR
+            <Text fontSize="md" color="muted.900" bold>
+              WinRate
             </Text>
           </HStack>
         </Box>

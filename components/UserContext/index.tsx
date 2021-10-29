@@ -1,14 +1,6 @@
 import React from 'react';
 import reducer from './reducer';
 
-export const defaultUser: IUser = {
-  username: 'user',
-  fullname: 'John Doe',
-  password: 'user123',
-  totalWin: 0,
-  totalLose: 0,
-  records: [],
-};
 export const UserSchema: IUser = {
   username: '',
   fullname: '',
@@ -23,7 +15,7 @@ export const UserContext = React.createContext({
 });
 
 const UserContextProvider = ({children}: any) => {
-  const [user, dispatch] = React.useReducer(reducer, defaultUser);
+  const [user, dispatch] = React.useReducer(reducer, UserSchema);
 
   return (
     <UserContext.Provider value={{user, dispatch}}>

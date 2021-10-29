@@ -16,13 +16,13 @@ function random(start: number, end: number) {
 }
 
 export default () => {
-  const [isError, setIsError] = React.useState(false);
+  const [isInvalid, setIsInvalid] = React.useState(false);
   const [difficulty, setDifficulty] = React.useState('');
-  const [choosenNum, setChoosenNum] = React.useState('1');
+  const [chosenNum, setChosenNum] = React.useState('1');
   const [result, setResult] = React.useState(<Text />);
   const {dispatch} = React.useContext(UserContext);
 
-  const decide = (onlyLevel?: boolean) => {
+  const computed = () => {
     let range: number[];
     switch (difficulty) {
       case 'Easy':
@@ -37,18 +37,17 @@ export default () => {
       default:
         throw new Error();
     }
-    return onlyLevel ? range : random(range[0], range[1]);
+    const winner = random(range[0], range[1]);
+    return {range, winner};
   };
   function handleInput(input: string) {
-    setChoosenNum(input);
-    setIsError(
-      //@ts-ignore
-      isNaN(+input) || +input < decide(true)[0] || +input > decide(true)[1],
-    );
+    const {range} = computed();
+    setChosenNum(input);
+    setIsInvalid(isNaN(+input) || +input < range[0] || +input > range[1]);
   }
   function handleSubmit() {
-    const winner = decide();
-    const win = winner === +choosenNum;
+    const {winner} = computed();
+    const win = winner === +chosenNum;
     const element = (
       <Center marginY="8">
         <Text
@@ -68,7 +67,7 @@ export default () => {
     dispatch({
       type: win ? 'WIN' : 'LOSE',
       record: {
-        selectedNumber: +choosenNum,
+        selectedNumber: +chosenNum,
         date: dayjs().format('DD/MM/YYYY').toString(),
         prizeNumber: +winner,
         win,
@@ -88,42 +87,49 @@ export default () => {
           colorScheme="green"
           opacity={difficulty && difficulty !== 'Easy' ? 0.5 : 1}
           w="32%"
-          onPress={() => setDifficulty('Easy')}>
+          onPress={() => {
+            setDifficulty('Easy');
+            setChosenNum('1');
+          }}>
           Easy
         </Button>
         <Button
           colorScheme="amber"
           opacity={difficulty && difficulty !== 'Normal' ? 0.5 : 1}
           w="32%"
-          onPress={() => setDifficulty('Normal')}>
+          onPress={() => {
+            setDifficulty('Normal');
+            setChosenNum('1');
+          }}>
           Normal
         </Button>
         <Button
           colorScheme="red"
           opacity={difficulty && difficulty !== 'Hard' ? 0.5 : 1}
           w="32%"
-          onPress={() => setDifficulty('Hard')}>
+          onPress={() => {
+            setDifficulty('Hard');
+            setChosenNum('1');
+          }}>
           Hard
         </Button>
       </HStack>
       {difficulty && (
-        <FormControl isInvalid={isError}>
+        <FormControl isInvalid={isInvalid}>
           <FormControl.Label
             _text={{
               color: 'coolGray.800',
               fontSize: 'xs',
               fontWeight: 500,
             }}>
-            {/* @ts-ignore **/}
-            Choose Number (Range: {decide(true)[0]} - {decide(true)[1]})
+            Choose Number (Range: {computed().range[0]} - {computed().range[1]})
           </FormControl.Label>
           <Input
-            value={choosenNum}
-            type="numeric"
+            value={chosenNum}
             onChangeText={val => handleInput(val)}
-            onEndEditing={() => !isError && handleSubmit()}
+            onEndEditing={() => !isInvalid && handleSubmit()}
             _focus={{
-              borderColor: isError ? 'red.500' : 'muted.900',
+              borderColor: isInvalid ? 'red.500' : 'muted.900',
             }}
             InputRightElement={
               <Button
@@ -131,7 +137,7 @@ export default () => {
                 bg="muted.900"
                 _pressed={{bg: 'muted.700'}}
                 _text={{color: 'white'}}
-                isDisabled={isError}
+                isDisabled={isInvalid}
                 onPress={() => handleSubmit()}>
                 Submit
               </Button>

@@ -16,9 +16,7 @@ const reducer = (state: IUser, action: IUserAction): IUser => {
         records,
       };
     case 'SET_USER':
-      return {
-        ...action.user,
-      };
+      return !action.user ? {...state} : {...action.user};
     default:
       throw new Error('Reducer Action Expected');
   }
