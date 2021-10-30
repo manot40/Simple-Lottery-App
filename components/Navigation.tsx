@@ -3,7 +3,7 @@ import {ViewContext} from './Main';
 import Ico from 'react-native-vector-icons/MaterialIcons';
 import {Box, Icon, Text, HStack, View, Center, Pressable} from 'native-base';
 
-export default ({children}: any) => {
+export default ({children}: {children: JSX.Element}) => {
   const {view, setView} = React.useContext(ViewContext);
   return (
     <Box flex={1} bg="white" safeAreaTop>

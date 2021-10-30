@@ -1,7 +1,7 @@
-/* eslint-disable prettier/prettier */
 import React from 'react';
 import {ViewContext} from '../Main';
 import {UserContext} from '../UserContext';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   Box,
   Heading,
@@ -30,6 +30,17 @@ export default () => {
   const [uname, setUname] = React.useState('user');
   const [psswd, setPsswd] = React.useState('user123');
   const toast = useToast();
+  React.useEffect(() => {
+    (async () => {
+      await AsyncStorage.getItem('userData').then(data => {
+        if (data) {
+          const localData: IUser = JSON.parse(data);
+          dispatch({type: 'SET_USER', user: localData});
+          setView('Home');
+        }
+      });
+    })();
+  });
 
   function handleLogin() {
     if (uname === login.uname && psswd === login.psswd) {
@@ -42,7 +53,8 @@ export default () => {
           id,
           status: 'error',
           title: 'Login Failed',
-          description: 'Username or Password Invalid. Please enter correct login info',
+          description:
+            'Username or Password Invalid. Please enter correct login info',
         });
       }
     }

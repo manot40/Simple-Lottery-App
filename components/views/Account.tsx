@@ -5,7 +5,11 @@ import React from 'react';
 
 export default () => {
   const {setView} = React.useContext(ViewContext);
-  const {user} = React.useContext(UserContext);
+  const {user, dispatch} = React.useContext(UserContext);
+  function handleLogout() {
+    dispatch({type: 'DISCARD_USER'});
+    setView('Login');
+  }
   return (
     <View>
       <Center>
@@ -30,7 +34,7 @@ export default () => {
           w="50%"
           marginBottom="2"
           colorScheme="red"
-          onPress={() => setView('Login')}>
+          onPress={() => handleLogout()}>
           Logout
         </Button>
         <Button

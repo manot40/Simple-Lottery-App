@@ -1,3 +1,4 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import React from 'react';
 import reducer from './reducer';
 
@@ -14,8 +15,13 @@ export const UserContext = React.createContext({
   dispatch: (_action: IUserAction) => {},
 });
 
-const UserContextProvider = ({children}: any) => {
+const UserContextProvider = ({children}: {children: JSX.Element}) => {
   const [user, dispatch] = React.useReducer(reducer, UserSchema);
+  React.useEffect(() => {
+    if (user.username) {
+      AsyncStorage.setItem('userData', JSON.stringify(user));
+    }
+  }, [user]);
 
   return (
     <UserContext.Provider value={{user, dispatch}}>

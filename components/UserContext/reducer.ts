@@ -1,3 +1,6 @@
+import {UserSchema} from './';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 const reducer = (state: IUser, action: IUserAction): IUser => {
   const records = !action.record
     ? [...state.records]
@@ -15,6 +18,9 @@ const reducer = (state: IUser, action: IUserAction): IUser => {
         totalLose: (state.totalLose += 1),
         records,
       };
+    case 'DISCARD_USER':
+      AsyncStorage.removeItem('userData');
+      return {...UserSchema};
     case 'SET_USER':
       return !action.user ? {...state} : {...action.user};
     default:
